@@ -73,11 +73,7 @@ export function ApplicationList() {
   return (
     <div className="w-full mx-auto space-y-6 pb-24 px-4">
       {/* Page Header */}
-      <div className="flex items-center justify-between py-2">
-        <div>
-          <h1 className="text-xl font-bold text-slate-800">我发起的申请</h1>
-          <p className="text-sm text-slate-500 mt-1">查看和管理您提交的各项权限开通流水</p>
-        </div>
+      <div className="flex items-center justify-end py-2">
         <Button variant="outline" className="text-blue-600 border-blue-200 hover:bg-blue-50" onClick={() => navigate('/staff-approval-list')}>
           工作人员审批视图 (测试)
         </Button>

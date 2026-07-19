@@ -82,7 +82,6 @@ export function Home() {
   const [evalResult, setEvalResult] = useState<{ meet: string[], notMeet: string[] }>({ meet: [], notMeet: [] });
   
   const [files, setFiles] = useState<File[]>([]);
-  const [agreementChecked, setAgreementChecked] = useState(true);
   const [internalControlChanged, setInternalControlChanged] = useState<boolean | null>(null);
   const [productContractChanged, setProductContractChanged] = useState<boolean | null>(null);
   const [beneficiaryChecked, setBeneficiaryChecked] = useState(false);
@@ -199,7 +198,7 @@ export function Home() {
 
   const handleConfirm = () => {
     const newlySelected = selectedProducts.filter(id => !isAlreadyOwned(id));
-    if (newlySelected.length === 0 || !agreementChecked) return;
+    if (newlySelected.length === 0) return;
 
     const meet: string[] = [];
     const notMeet: string[] = [];
@@ -294,7 +293,7 @@ export function Home() {
             <tbody>
               <tr>
                 <td className="bg-slate-50 border border-slate-200 py-2.5 px-4 w-32 text-slate-600 font-medium">客户名称</td>
-                <td className="border border-slate-200 py-2.5 px-4 text-slate-900 w-[30%]">张三科技有限���司</td>
+                <td className="border border-slate-200 py-2.5 px-4 text-slate-900 w-[30%]">张三科技有限公司</td>
                 <td className="bg-slate-50 border border-slate-200 py-2.5 px-4 w-32 text-slate-600 font-medium">客户类型</td>
                 <td className="border border-slate-200 py-2.5 px-4 text-slate-900 w-[30%]">{isSpecialCorp ? '特法客户' : customerType}</td>
               </tr>
@@ -491,7 +490,7 @@ export function Home() {
           </h2>
         </div>
         <div className="p-5 space-y-6">
-          {/* ����控��度是���有变更 */}
+          {/* 内控制度是否有变更 */}
           {existingMaxValue > 0 && (
             <div className="space-y-3">
               <div className="flex flex-col sm:flex-row sm:items-start gap-4">
@@ -646,7 +645,7 @@ export function Home() {
 
           {files.length > 0 && (
             <div className="mt-4">
-              <p className="text-xs font-semibold text-slate-500 mb-2 uppercase">已上传附��</p>
+              <p className="text-xs font-semibold text-slate-500 mb-2 uppercase">已上传附件</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {files.map((file, idx) => (
                   <div key={idx} className="flex items-center justify-between p-2 bg-white border border-slate-200 rounded-sm">
@@ -671,22 +670,12 @@ export function Home() {
       {/* Actions */}
       <ProcessRecord status={status} rejectReason={rejectReason} />
 
-      <div className="sticky bottom-0 bg-white rounded-sm shadow-[0_-10px_15px_-3px_rgb(0,0,0,0.05)] border-t border-slate-200 p-5 flex items-center justify-between z-20 mt-6">
-        <div className="text-sm text-slate-600 flex items-center">
-          <Checkbox 
-            id="agreement" 
-            className="mr-2 rounded-sm" 
-            checked={agreementChecked}
-            onCheckedChange={(c) => setAgreementChecked(!!c)}
-          />
-          <label htmlFor="agreement">我已阅读并同意 <a href="#" className="text-blue-600 hover:underline">《交易权限申请相关风险提示》</a>并授权查询相关机构开户情况。</label>
-        </div>
+      <div className="sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 flex items-center justify-end z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
         <Button 
           size="lg"
           className="rounded-sm px-8"
           disabled={
             selectedProducts.filter(id => !isAlreadyOwned(id)).length === 0 || 
-            !agreementChecked || 
             !beneficiaryChecked ||
             (existingMaxValue > 0 && internalControlChanged === null) ||
             (isSpecialCorp && productContractChanged === null)
@@ -705,7 +694,7 @@ export function Home() {
             适当性匹配提醒
           </DialogTitle>
           <DialogDescription className="text-slate-600 text-sm mb-6 leading-relaxed">
-            尊敬的投资���：您当前风测等级为 <span className="font-bold text-orange-600">C3</span>。
+            尊敬的投资者：您当前风测等级为 <span className="font-bold text-orange-600">C3</span>。
             <br/><br/>
             该级别暂不满足开通 R4 级别品种（如金融期货、原油等）的条件。如有疑问请联系您的客户经理。
           </DialogDescription>
@@ -767,7 +756,7 @@ export function Home() {
               先提交已满足条件权限
             </Button>
             {/*
-              前往补充���料
+              前往补充材料
             </Button>
           */}
           </div>

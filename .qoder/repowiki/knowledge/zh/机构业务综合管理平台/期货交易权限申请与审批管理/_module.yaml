@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: permission_apply_app
+title: 期货交易权限申请与审批管理
+scope:
+    - permission_apply/
+source_files: []
+depends_on: []
+related_to: []

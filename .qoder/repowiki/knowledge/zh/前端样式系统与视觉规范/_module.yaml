@@ -1,0 +1,13 @@
+schema_version: 1
+module_path: frontend_style
+title: 前端样式系统与视觉规范
+scope: []
+source_files:
+    - src/styles/theme.css
+    - src/styles/tailwind.css
+    - src/styles/index.css
+    - src/lib/utils.ts
+    - src/app/components/ui/button.tsx
+    - package.json
+depends_on: []
+related_to: []

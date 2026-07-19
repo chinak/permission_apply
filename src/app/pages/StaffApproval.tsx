@@ -38,7 +38,7 @@ const FULL_EXCHANGE_PERMISSIONS = [
     shortName: "上期所",
     permissions: [
       { id: "shfe_opt", name: "上海期权", checked: true },
-      { id: "nickel_1d", name: "镍(1日)", checked: true },
+      { id: "nickel_1d", name: "镍（旧）", checked: true },
       { id: "nickel", name: "镍", checked: true },
     ]
   },
@@ -65,7 +65,7 @@ const FULL_EXCHANGE_PERMISSIONS = [
   },
   {
     id: "cffex",
-    name: "中国金融期货���易所",
+    name: "中国金融期货交易所",
     shortName: "中金所",
     permissions: [
       { id: "stock_idx_futures", name: "股指期货", checked: true },
@@ -557,7 +557,7 @@ export function StaffApproval({
                 <div className="relative pl-6">
                   <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-green-500 border-2 border-white shadow-sm z-10 flex items-center justify-center"></div>
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-                    <span className="font-medium text-slate-800 text-sm">发起��请</span>
+                    <span className="font-medium text-slate-800 text-sm">发起申请</span>
                     <span className="text-xs text-slate-500 font-mono">2026-06-20 10:00:00</span>
                   </div>
                   <div className="text-xs text-slate-500 flex items-center gap-1.5">

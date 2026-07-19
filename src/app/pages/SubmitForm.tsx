@@ -35,7 +35,7 @@ export const PRODUCTS = [
     level: "R4",
     exchanges: [
       { id: "czce_opt", name: "郑州商品交易所" },
-      { id: "dce_opt", name: "��连商品交易所" },
+      { id: "dce_opt", name: "大连商品交易所" },
       { id: "shfe_opt", name: "上海期货交易所" },
       { id: "ine_opt", name: "上海国际能源交易中心" },
       { id: "gfex_opt", name: "广州期货交易所" }
@@ -391,7 +391,7 @@ export function SubmitForm({ isReadOnly = false, defaultTab = 'first-time', mock
                         {effNeeds100k && (
                           <div className="bg-slate-50/50 p-3 rounded-sm border border-slate-100">
                             <div className="flex justify-between items-start mb-2">
-                              <p className="text-slate-800 font-medium">申请原油、50万及以下品种，前5个交易日每日≥100万���</p>
+                              <p className="text-slate-800 font-medium">申请原油、50万及以下品种，前5个交易日每日≥100万元</p>
                               {isCapitalSatisfied ? (
                                 <span className="text-green-600 flex items-center gap-1.5 font-medium text-xs bg-green-50 px-2 py-0.5 rounded-sm"><CheckCircle2 className="w-3.5 h-3.5"/> 已满足</span>
                               ) : (
@@ -629,7 +629,7 @@ export function SubmitForm({ isReadOnly = false, defaultTab = 'first-time', mock
                     <ShieldCheck className="w-5 h-5 text-emerald-600 mt-0.5" />
                     <div className="text-slate-700">
                       <p className="font-medium text-emerald-800 mb-1">无需额外补充证明材料</p>
-                      <p className="text-xs text-emerald-700/80">您的资质、资产及经历等已由系统自动校验满足，���前正在直接进行权限挂接，请耐心等待 1-2个工作日。</p>
+                      <p className="text-xs text-emerald-700/80">您的资质、资产及经历等已由系统自动校验满足，当前正在直接进行权限挂接，请耐心等待 1-2个工作日。</p>
                     </div>
                   </div>
                 </div>

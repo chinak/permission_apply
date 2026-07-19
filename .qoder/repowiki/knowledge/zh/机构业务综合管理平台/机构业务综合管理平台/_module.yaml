@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: warehouse_app
+title: 机构业务综合管理平台
+scope:
+    - src/
+source_files: []
+depends_on: []
+related_to: []

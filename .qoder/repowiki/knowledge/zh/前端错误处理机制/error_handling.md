@@ -1,0 +1,16 @@
+该仓库为纯前端应用（基于 React/TypeScript），未建立统一的错误处理框架或全局错误边界（Error Boundary）。错误处理主要依赖于组件内部的局部状态管理和第三方库（如 `react-hook-form`）的内置机制。
+
+### 1. 核心策略：局部捕获与 UI 降级
+- **资源加载容错**：通过 `ImageWithFallback` 组件实现图片加载失败的优雅降级。利用 `onError` 事件触发状态变更，将破损图片替换为默认的 SVG 占位符，防止 UI 出现破损图标。
+- **表单验证反馈**：依托 `react-hook-form` 和 shadcn/ui 的 `Form` 组件体系。错误信息通过 `useFormField` 钩子从表单上下文中提取，并在 `FormMessage` 中根据 `error` 状态动态渲染。UI 层面通过 `data-error` 属性驱动样式变化（如标签变红）。
+
+### 2. 开发规范约束：Context 使用保护
+- **强制上下文检查**：在自定义 Hook（如 `useAppContext`, `useSidebar`, `useCarousel`）中，采用“快速失败”（Fail-fast）策略。如果 Hook 在对应的 Provider 外部被调用，会直接抛出 `new Error()`。这是一种开发阶段的防御性编程，旨在帮助开发者尽早发现组件树结构错误。
+
+### 3. 缺失的全局机制
+- **无全局错误边界**：未发现包裹根组件的 `ErrorBoundary`，这意味着未被捕获的运行时错误可能导致整个应用白屏。
+- **无统一错误上报**：未发现集成 Sentry、LogRocket 或其他错误监控服务的代码，也未见统一的 API 请求错误拦截器（如 Axios interceptors）。
+
+### 4. 开发者建议
+- 在处理异步数据请求时，建议在页面级组件中手动实现 `try/catch` 并结合 UI 状态（Loading/Error/Success）进行展示。
+- 对于关键业务逻辑，应考虑引入全局错误边界以捕获意外崩溃并提供友好的重试入口。

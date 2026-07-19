@@ -1,0 +1,367 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: main
+nodes_managed: true
+exported_at: "2026-06-30T05:12:48Z"
+modules:
+    "":
+        dir_name: 机构业务综合管理平台
+        title: 机构业务综合管理平台
+        scope:
+            - README.md
+            - ATTRIBUTIONS.md
+            - package.json
+            - package-lock.json
+            - pnpm-workspace.yaml
+            - vite.config.ts
+            - postcss.config.mjs
+            - index.html
+            - fix_home.js
+            - replace.js
+            - default_shadcn_theme.css
+            - deploy.ps1
+            - debug.log
+            - deploy\README.md
+            - deploy\deploy.sh
+            - deploy\nginx-server.conf
+            - deploy\nginx.conf
+            - docs\warehouse-transfer-design.md
+            - docs\国泰君安期货交易所客户移仓业务操作指引（2026年修订）.docx
+            - docs\国泰君安期货交易所移仓业务操作指引.md
+            - guidelines\Guidelines.md
+            - permission_apply\ATTRIBUTIONS.md
+            - permission_apply\README.md
+            - permission_apply\default_shadcn_theme.css
+            - permission_apply\fix_home.js
+            - permission_apply\guidelines\Guidelines.md
+            - permission_apply\index.html
+            - permission_apply\package.json
+            - permission_apply\pnpm-workspace.yaml
+            - permission_apply\postcss.config.mjs
+            - permission_apply\replace.js
+            - permission_apply\src\app\App.tsx
+            - permission_apply\src\app\components\ConfigPanel.tsx
+            - permission_apply\src\app\components\LicenseConfirmDialog.tsx
+            - permission_apply\src\app\components\ProcessRecord.tsx
+            - permission_apply\src\app\components\figma\ImageWithFallback.tsx
+            - permission_apply\src\app\components\ui\accordion.tsx
+            - permission_apply\src\app\components\ui\alert-dialog.tsx
+            - permission_apply\src\app\components\ui\alert.tsx
+            - permission_apply\src\app\components\ui\aspect-ratio.tsx
+            - permission_apply\src\app\components\ui\avatar.tsx
+            - permission_apply\src\app\components\ui\badge.tsx
+            - permission_apply\src\app\components\ui\breadcrumb.tsx
+            - permission_apply\src\app\components\ui\button.tsx
+            - permission_apply\src\app\components\ui\calendar.tsx
+            - permission_apply\src\app\components\ui\card.tsx
+            - permission_apply\src\app\components\ui\carousel.tsx
+            - permission_apply\src\app\components\ui\chart.tsx
+            - permission_apply\src\app\components\ui\checkbox.tsx
+            - permission_apply\src\app\components\ui\collapsible.tsx
+            - permission_apply\src\app\components\ui\command.tsx
+            - permission_apply\src\app\components\ui\context-menu.tsx
+            - permission_apply\src\app\components\ui\dialog.tsx
+            - permission_apply\src\app\components\ui\drawer.tsx
+            - permission_apply\src\app\components\ui\dropdown-menu.tsx
+            - permission_apply\src\app\components\ui\form.tsx
+            - permission_apply\src\app\components\ui\hover-card.tsx
+            - permission_apply\src\app\components\ui\input-otp.tsx
+            - permission_apply\src\app\components\ui\input.tsx
+            - permission_apply\src\app\components\ui\label.tsx
+            - permission_apply\src\app\components\ui\menubar.tsx
+            - permission_apply\src\app\components\ui\navigation-menu.tsx
+            - permission_apply\src\app\components\ui\pagination.tsx
+            - permission_apply\src\app\components\ui\popover.tsx
+            - permission_apply\src\app\components\ui\progress.tsx
+            - permission_apply\src\app\components\ui\radio-group.tsx
+            - permission_apply\src\app\components\ui\resizable.tsx
+            - permission_apply\src\app\components\ui\scroll-area.tsx
+            - permission_apply\src\app\components\ui\select.tsx
+            - permission_apply\src\app\components\ui\separator.tsx
+            - permission_apply\src\app\components\ui\sheet.tsx
+            - permission_apply\src\app\components\ui\sidebar.tsx
+            - permission_apply\src\app\components\ui\skeleton.tsx
+            - permission_apply\src\app\components\ui\slider.tsx
+            - permission_apply\src\app\components\ui\sonner.tsx
+            - permission_apply\src\app\components\ui\switch.tsx
+            - permission_apply\src\app\components\ui\table.tsx
+            - permission_apply\src\app\components\ui\tabs.tsx
+            - permission_apply\src\app\components\ui\textarea.tsx
+            - permission_apply\src\app\components\ui\toggle-group.tsx
+            - permission_apply\src\app\components\ui\toggle.tsx
+            - permission_apply\src\app\components\ui\tooltip.tsx
+            - permission_apply\src\app\components\ui\use-mobile.ts
+            - permission_apply\src\app\components\ui\utils.ts
+            - permission_apply\src\app\layout.tsx
+            - permission_apply\src\app\pages\ApplicationDetail.tsx
+            - permission_apply\src\app\pages\ApplicationList.tsx
+            - permission_apply\src\app\pages\Home.tsx
+            - permission_apply\src\app\pages\StaffApproval.tsx
+            - permission_apply\src\app\pages\StaffApprovalList.tsx
+            - permission_apply\src\app\pages\SubmitForm.tsx
+            - permission_apply\src\app\pages\SystemSettings.tsx
+            - permission_apply\src\app\routes.tsx
+            - permission_apply\src\app\store\AppContext.tsx
+            - permission_apply\src\app\utils\mockData.ts
+            - permission_apply\src\imports\__APP-________.pdf
+            - permission_apply\src\imports\_______17817727737408.png
+            - permission_apply\src\imports\customer-info.html
+            - permission_apply\src\imports\image-1.png
+            - permission_apply\src\imports\image-2.png
+            - permission_apply\src\imports\image-3.png
+            - permission_apply\src\imports\image-4.png
+            - permission_apply\src\imports\image-5.png
+            - permission_apply\src\imports\image-6.png
+            - permission_apply\src\imports\image.png
+            - permission_apply\src\lib\utils.ts
+            - permission_apply\src\main.tsx
+            - permission_apply\src\styles\fonts.css
+            - permission_apply\src\styles\globals.css
+            - permission_apply\src\styles\index.css
+            - permission_apply\src\styles\tailwind.css
+            - permission_apply\src\styles\theme.css
+            - permission_apply\vite.config.ts
+            - src\app\App.tsx
+            - src\app\components\ConfigPanel.tsx
+            - src\app\components\LicenseConfirmDialog.tsx
+            - src\app\components\ProcessRecord.tsx
+            - src\app\components\WarehouseConfigPanel.tsx
+            - src\app\components\figma\ImageWithFallback.tsx
+            - src\app\components\ui\accordion.tsx
+            - src\app\components\ui\alert-dialog.tsx
+            - src\app\components\ui\alert.tsx
+            - src\app\components\ui\aspect-ratio.tsx
+            - src\app\components\ui\avatar.tsx
+            - src\app\components\ui\badge.tsx
+            - src\app\components\ui\breadcrumb.tsx
+            - src\app\components\ui\button.tsx
+            - src\app\components\ui\calendar.tsx
+            - src\app\components\ui\card.tsx
+            - src\app\components\ui\carousel.tsx
+            - src\app\components\ui\chart.tsx
+            - src\app\components\ui\checkbox.tsx
+            - src\app\components\ui\collapsible.tsx
+            - src\app\components\ui\command.tsx
+            - src\app\components\ui\context-menu.tsx
+            - src\app\components\ui\dialog.tsx
+            - src\app\components\ui\drawer.tsx
+            - src\app\components\ui\dropdown-menu.tsx
+            - src\app\components\ui\form.tsx
+            - src\app\components\ui\hover-card.tsx
+            - src\app\components\ui\input-otp.tsx
+            - src\app\components\ui\input.tsx
+            - src\app\components\ui\label.tsx
+            - src\app\components\ui\menubar.tsx
+            - src\app\components\ui\navigation-menu.tsx
+            - src\app\components\ui\pagination.tsx
+            - src\app\components\ui\popover.tsx
+            - src\app\components\ui\progress.tsx
+            - src\app\components\ui\radio-group.tsx
+            - src\app\components\ui\resizable.tsx
+            - src\app\components\ui\scroll-area.tsx
+            - src\app\components\ui\select.tsx
+            - src\app\components\ui\separator.tsx
+            - src\app\components\ui\sheet.tsx
+            - src\app\components\ui\sidebar.tsx
+            - src\app\components\ui\skeleton.tsx
+            - src\app\components\ui\slider.tsx
+            - src\app\components\ui\sonner.tsx
+            - src\app\components\ui\switch.tsx
+            - src\app\components\ui\table.tsx
+            - src\app\components\ui\tabs.tsx
+            - src\app\components\ui\textarea.tsx
+            - src\app\components\ui\toggle-group.tsx
+            - src\app\components\ui\toggle.tsx
+            - src\app\components\ui\tooltip.tsx
+            - src\app\components\ui\use-mobile.ts
+            - src\app\components\ui\utils.ts
+            - src\app\layout.tsx
+            - src\app\pages\ApplicationDetail.tsx
+            - src\app\pages\ApplicationList.tsx
+            - src\app\pages\Home.tsx
+            - src\app\pages\StaffApproval.tsx
+            - src\app\pages\StaffApprovalList.tsx
+            - src\app\pages\SubmitForm.tsx
+            - src\app\pages\SystemSettings.tsx
+            - src\app\pages\WarehouseApply.tsx
+            - src\app\pages\WarehouseAudit.tsx
+            - src\app\pages\WarehouseAuditList.tsx
+            - src\app\pages\WarehouseDetail.tsx
+            - src\app\pages\WarehouseHome.tsx
+            - src\app\pages\WarehouseList.tsx
+            - src\app\routes.tsx
+            - src\app\store\AppContext.tsx
+            - src\app\store\WarehouseContext.tsx
+            - src\app\utils\mockData.ts
+            - src\imports\__APP-________.pdf
+            - src\imports\_______17817727737408.png
+            - src\imports\customer-info.html
+            - src\imports\image-1.png
+            - src\imports\image-2.png
+            - src\imports\image-3.png
+            - src\imports\image-4.png
+            - src\imports\image-5.png
+            - src\imports\image-6.png
+            - src\imports\image.png
+            - src\lib\utils.ts
+            - src\main.tsx
+            - src\styles\fonts.css
+            - src\styles\globals.css
+            - src\styles\index.css
+            - src\styles\tailwind.css
+            - src\styles\theme.css
+        source_files: []
+        children:
+            - deploy
+            - permission_apply_app
+            - warehouse_app
+        depends_on: []
+        related_to: []
+    build_system:
+        dir_name: Vite 构建与自动化部署体系
+        title: Vite 构建与自动化部署体系
+        scope: []
+        source_files:
+            - package.json
+            - vite.config.ts
+            - pnpm-workspace.yaml
+            - deploy.ps1
+            - deploy/deploy.sh
+            - deploy/nginx.conf
+        children: []
+        depends_on: []
+        related_to: []
+    configuration_system:
+        dir_name: 前端应用配置与状态管理
+        title: 前端应用配置与状态管理
+        scope: []
+        source_files:
+            - src/app/store/AppContext.tsx
+            - src/app/store/WarehouseContext.tsx
+            - src/app/components/ConfigPanel.tsx
+            - vite.config.ts
+            - deploy/nginx.conf
+            - deploy/deploy.sh
+            - pnpm-workspace.yaml
+        children: []
+        depends_on: []
+        related_to: []
+    dependency_management:
+        dir_name: pnpm Workspace 依赖管理与版本锁定
+        title: pnpm Workspace 依赖管理与版本锁定
+        scope: []
+        source_files:
+            - package.json
+            - pnpm-workspace.yaml
+            - package-lock.json
+            - permission_apply/package.json
+        children: []
+        depends_on: []
+        related_to: []
+    deploy:
+        dir_name: 前端应用自动化部署与 Nginx 配置
+        title: 前端应用自动化部署与 Nginx 配置
+        scope:
+            - deploy/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    error_handling:
+        dir_name: 前端错误处理机制
+        title: 前端错误处理机制
+        scope: []
+        source_files:
+            - src/app/components/figma/ImageWithFallback.tsx
+            - src/app/components/ui/form.tsx
+            - src/app/store/AppContext.tsx
+            - src/app/components/ui/sidebar.tsx
+            - src/app/components/ui/carousel.tsx
+        children: []
+        depends_on: []
+        related_to: []
+    frontend_style:
+        dir_name: 前端样式系统与视觉规范
+        title: 前端样式系统与视觉规范
+        scope: []
+        source_files:
+            - src/styles/theme.css
+            - src/styles/tailwind.css
+            - src/styles/index.css
+            - src/lib/utils.ts
+            - src/app/components/ui/button.tsx
+            - package.json
+        children: []
+        depends_on: []
+        related_to: []
+    permission_apply_app:
+        dir_name: 期货交易权限申请与审批管理
+        title: 期货交易权限申请与审批管理
+        scope:
+            - permission_apply/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    warehouse_app:
+        dir_name: 机构业务综合管理平台
+        title: 机构业务综合管理平台
+        scope:
+            - src/
+        source_files: []
+        children:
+            - warehouse_app/app_shell
+            - warehouse_app/system_settings
+            - warehouse_app/warehouse_operations
+        depends_on: []
+        related_to: []
+    warehouse_app/app_shell:
+        dir_name: 机构业务平台应用壳层
+        title: 机构业务平台应用壳层
+        scope:
+            - src/app/App.tsx
+            - src/app/layout.tsx
+            - src/app/routes.tsx
+            - src/app/store/AppContext.tsx
+            - src/app/utils/mockData.ts
+            - src/app/components/ProcessRecord.tsx
+            - src/app/pages/Home.tsx
+            - src/app/pages/SubmitForm.tsx
+            - src/app/pages/WarehouseHome.tsx
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: warehouse_app/system_settings
+            - path: warehouse_app/warehouse_operations
+    warehouse_app/system_settings:
+        dir_name: 系统配置与状态模拟
+        title: 系统配置与状态模拟
+        scope:
+            - src/app/pages/SystemSettings.tsx
+            - src/app/components/ConfigPanel.tsx
+            - src/app/components/LicenseConfirmDialog.tsx
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: warehouse_app/app_shell
+            - path: warehouse_app/warehouse_operations
+    warehouse_app/warehouse_operations:
+        dir_name: 期货交易所移仓业务管理
+        title: 期货交易所移仓业务管理
+        scope:
+            - src/app/pages/WarehouseList.tsx
+            - src/app/pages/WarehouseDetail.tsx
+            - src/app/pages/WarehouseApply.tsx
+            - src/app/pages/WarehouseAudit.tsx
+            - src/app/pages/WarehouseAuditList.tsx
+            - src/app/store/WarehouseContext.tsx
+            - src/app/components/WarehouseConfigPanel.tsx
+        source_files: []
+        children: []
+        depends_on: []
+        related_to:
+            - path: warehouse_app/app_shell
+            - path: warehouse_app/system_settings

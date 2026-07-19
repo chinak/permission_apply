@@ -1,0 +1,18 @@
+schema_version: 1
+module_path: warehouse_app/app_shell
+title: 机构业务平台应用壳层
+scope:
+    - src/app/App.tsx
+    - src/app/layout.tsx
+    - src/app/routes.tsx
+    - src/app/store/AppContext.tsx
+    - src/app/utils/mockData.ts
+    - src/app/components/ProcessRecord.tsx
+    - src/app/pages/Home.tsx
+    - src/app/pages/SubmitForm.tsx
+    - src/app/pages/WarehouseHome.tsx
+source_files: []
+depends_on: []
+related_to:
+    - path: warehouse_app/system_settings
+    - path: warehouse_app/warehouse_operations

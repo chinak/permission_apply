@@ -109,14 +109,6 @@ export function StaffApprovalList() {
 
   return (
     <div className="w-full mx-auto space-y-6 pb-24 px-4">
-      {/* Page Header */}
-      <div className="flex items-center justify-between py-2">
-        <div>
-          <h1 className="text-xl font-bold text-slate-800">审批流水列表</h1>
-          <p className="text-sm text-slate-500 mt-1">管理和审批客户提交的交易权限开通申请</p>
-        </div>
-      </div>
-
       <div className="bg-white rounded-sm shadow-sm border border-slate-200 p-5">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <div className="flex flex-col gap-1.5">
@@ -300,7 +292,7 @@ export function StaffApprovalList() {
       </div>
 
       <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
-        <DialogContent className="max-w-6xl w-full h-[90vh] p-0 border-none rounded-sm overflow-hidden bg-slate-50 flex flex-col gap-0">
+        <DialogContent className="!max-w-[50vw] w-full h-[90vh] p-0 border-none rounded-sm overflow-hidden bg-slate-50 flex flex-col gap-0">
           <DialogDescription className="sr-only">客户提交的交易权限开通申请详情信息审批界面。</DialogDescription>
           {/* Sticky modal header */}
           <div className="shrink-0 flex items-center gap-3 px-6 py-4 bg-white border-b border-slate-200 shadow-sm z-20">

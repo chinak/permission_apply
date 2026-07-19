@@ -1,0 +1,12 @@
+schema_version: 1
+module_path: warehouse_app/system_settings
+title: 系统配置与状态模拟
+scope:
+    - src/app/pages/SystemSettings.tsx
+    - src/app/components/ConfigPanel.tsx
+    - src/app/components/LicenseConfirmDialog.tsx
+source_files: []
+depends_on: []
+related_to:
+    - path: warehouse_app/app_shell
+    - path: warehouse_app/warehouse_operations

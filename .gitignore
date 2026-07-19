@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+deploy/dist/
+build/
+
+# Embedded repo (has its own git repository)
+permission_apply/
+
+# Logs
+*.log
+debug.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Env
+.env
+.env.local
+.env.*.local

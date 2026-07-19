@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: configuration_system
+title: 前端应用配置与状态管理
+scope: []
+source_files:
+    - src/app/store/AppContext.tsx
+    - src/app/store/WarehouseContext.tsx
+    - src/app/components/ConfigPanel.tsx
+    - vite.config.ts
+    - deploy/nginx.conf
+    - deploy/deploy.sh
+    - pnpm-workspace.yaml
+depends_on: []
+related_to: []
