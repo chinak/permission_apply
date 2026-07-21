@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: warehouse_app/system_settings
-title: 系统设置与资质确认面板
+title: 系统设置与调试面板（失败原因配置、全局状态模拟、营业执照确认）
 scope:
     - src/app/pages/SystemSettings.tsx
     - src/app/components/ConfigPanel.tsx

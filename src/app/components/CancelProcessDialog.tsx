@@ -372,18 +372,52 @@ export function CancelProcessDialog({ app, open, onOpenChange, mode = 'process' 
                     </div>
                   </section>
 
-                  {/* 申请内容（业务人员可取消客户勾选，不能新增） */}
+                  {/* 申请内容：上方只读文本（客户原始）+ 下方可编辑 Checkbox（本次办理） */}
                   <section className="bg-white rounded-sm shadow-sm border border-slate-200">
                     <div className="px-5 py-3 border-b border-slate-200 bg-slate-50/50 flex items-center justify-between">
                       <h2 className="text-base font-semibold text-slate-800 flex items-center gap-2">
                         <span className="w-1 h-4 bg-blue-600 rounded-sm"></span>
                         申请内容
                       </h2>
-                      <span className="text-xs text-slate-400">可取消客户申请项，不可新增</span>
+                      {/* diff 摘要 */}
+                      {(() => {
+                        const originalCount = applyContent.reduce((s, ex) => s + (ex.codeOriginal ? 1 : 0) + ex.permissions.filter(p => p.hasPermission && p.original).length, 0);
+                        const currentCount = applyContent.reduce((s, ex) => s + (ex.codeChecked ? 1 : 0) + ex.permissions.filter(p => p.hasPermission && (ex.codeChecked || p.checked)).length, 0);
+                        const diff = originalCount - currentCount;
+                        return diff > 0 ? (
+                          <span className="text-xs text-amber-600 font-medium">客户申请 {originalCount} 项 → 本次办理 {currentCount} 项（取消 {diff} 项）</span>
+                        ) : null;
+                      })()}
+                    </div>
+
+                    {/* 申请内容（客户原始，只读文本展示） */}
+                    <div className="px-5 py-3.5 border-b border-slate-100 bg-slate-50/30">
+                      <div className="flex items-start gap-2.5">
+                        <span className="text-sm font-semibold text-slate-600 whitespace-nowrap">申请内容：</span>
+                        <p className="text-sm text-slate-700 leading-relaxed">
+                          {applyContent.flatMap(ex => {
+                            const items: string[] = [];
+                            if (ex.codeOriginal) items.push(`${ex.exchange}${ex.codeWithPerm ? '编码及权限' : '编码'}`);
+                            ex.permissions.forEach(p => {
+                              if (p.hasPermission && p.original && !ex.codeOriginal) {
+                                items.push(`${ex.exchange}-${p.name}`);
+                              }
+                            });
+                            return items;
+                          }).join('、') || '无'}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 本次办理（可编辑 Checkbox） */}
+                    <div className="px-5 pt-3 pb-0">
+                      <span className="text-xs text-slate-400">本次办理注销（可取消客户申请项，不可新增）</span>
                     </div>
                     <div className="p-5 grid grid-cols-1 lg:grid-cols-2 gap-3 items-start">
-                      {applyContent.map((ex, idx) => (
-                        <div key={idx} className="border border-slate-200 rounded-sm overflow-hidden">
+                      {applyContent.map((ex, idx) => {
+                        const codeModified = ex.codeOriginal !== ex.codeChecked;
+                        return (
+                        <div key={idx} className={`border rounded-sm overflow-hidden ${codeModified ? 'border-amber-300' : 'border-slate-200'}`}>
                           {/* 交易所编码（父级） */}
                           <label className={`flex items-center gap-2.5 px-4 py-2.5 bg-slate-50 border-b border-slate-200 ${ex.codeOriginal ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
                             <Checkbox
@@ -393,6 +427,9 @@ export function CancelProcessDialog({ app, open, onOpenChange, mode = 'process' 
                               onCheckedChange={() => toggleCode(idx)}
                             />
                             <span className="font-medium text-slate-800">{ex.exchange}{ex.codeWithPerm ? '编码及权限' : '编码'}</span>
+                            {codeModified && (
+                              <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-medium">已取消</span>
+                            )}
                           </label>
                           {/* 具体权限（子级） */}
                           <div className="divide-y divide-slate-100">
@@ -403,8 +440,10 @@ export function CancelProcessDialog({ app, open, onOpenChange, mode = 'process' 
                             )}
                             {ex.permissions.map((p, pi) => {
                               const displayChecked = p.hasPermission && (ex.codeChecked || p.checked);
-                              // 无权限 / 非客户原选 / 编码锁定（已注销编码）时不可操作
                               const disabled = !p.hasPermission || !p.original || ex.codeChecked;
+                              // diff 标记
+                              const origDisplay = p.hasPermission && p.original;
+                              const permModified = origDisplay && !displayChecked;
                               return (
                                 <label key={pi} className={`flex items-center gap-2.5 px-4 py-2.5 pl-10 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                                   <Checkbox
@@ -416,12 +455,16 @@ export function CancelProcessDialog({ app, open, onOpenChange, mode = 'process' 
                                   <span className={`text-sm ${p.hasPermission ? (displayChecked ? 'text-slate-700' : 'text-slate-400') : 'text-slate-300'}`}>
                                     {p.name}{!p.hasPermission && '（无权限）'}
                                   </span>
+                                  {permModified && (
+                                    <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-medium">已取消</span>
+                                  )}
                                 </label>
                               );
                             })}
                           </div>
                         </div>
-                      ))}
+                        );
+                      })}
                     </div>
                     {/* 同步操作区：仅“办理中-复核”阶段展示，编码注销(CAP) / 权限注销(CTP) 独立批量提交 */}
                     {atReviewStage && (

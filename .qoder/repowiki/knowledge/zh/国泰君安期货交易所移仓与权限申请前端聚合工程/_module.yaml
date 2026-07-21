@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: ""
-title: 国泰君安期货移仓业务管理系统（多应用聚合根）
+title: 国泰君安期货交易所移仓与权限申请前端聚合工程
 scope:
     - README.md
     - ATTRIBUTIONS.md

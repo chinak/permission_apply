@@ -21,10 +21,9 @@
 
 ## 更新摘要
 **变更内容**
-- 大幅重构Button组件，新增多种样式变体和状态处理选项
-- 全面升级Dialog组件，增强动画效果、布局灵活性和可访问性支持
-- 改进Checkbox组件，优化勾选图标、尺寸适配和错误状态反馈
-- 提升整体用户体验和样式定制能力
+- 标准化筛选区域按钮布局，在9个页面中统一查询按钮位于左侧、重置按钮位于右侧的布局模式
+- 提升用户界面一致性和用户体验
+- 优化按钮组合的视觉层次和交互流程
 
 ## 目录
 1. [简介](#简介)
@@ -41,7 +40,7 @@
 ## 简介
 本UI组件库以Radix UI为原子能力底座，结合Tailwind CSS与class-variance-authority（CVA）实现一致、可组合、可定制的组件体系。组件遵循"从原子到业务"的分层设计：原子组件负责交互与状态；语义化包装器负责样式与变体；表单与布局组件负责组合与上下文管理。同时通过自定义CSS变量与暗色主题适配，提供统一的主题系统与无障碍支持。
 
-**最新更新** 本次更新对基础组件进行了重大重构，特别是Button、Dialog和Checkbox组件，显著提升了样式选项丰富度、状态处理能力和用户体验。
+**最新更新** 本次更新重点实现了筛选区域按钮布局的标准化，在9个页面中统一了查询按钮在左、重置按钮在右的布局模式，显著提升了用户界面的一致性和用户体验。
 
 ## 项目结构
 组件集中于 src/app/components/ui 下，按功能模块组织，每个文件一个组件或一组相关子组件。样式主题位于 src/styles/theme.css，通用工具函数位于 src/app/components/ui/utils.ts。
@@ -49,14 +48,14 @@
 ```mermaid
 graph TB
 subgraph "组件层"
-A["button.tsx<br/>+55行重构"]
+A["button.tsx<br/>标准化按钮布局"]
 B["input.tsx"]
-C["dialog.tsx<br/>+116行重构"]
+C["dialog.tsx"]
 D["form.tsx"]
 E["table.tsx"]
 F["label.tsx"]
 G["select.tsx"]
-H["checkbox.tsx<br/>+29行重构"]
+H["checkbox.tsx"]
 I["tabs.tsx"]
 J["badge.tsx"]
 K["card.tsx"]
@@ -118,7 +117,7 @@ L -. 使用 .-> T
 - 布局与容器：卡片、表格、骨架屏等，用于信息展示与页面结构组织。
 - 工具与主题：统一的类名合并工具与CSS变量主题系统，支撑跨组件的一致性与暗色模式。
 
-**重要更新** Button组件新增了更多变体类型和状态处理，Dialog组件增强了动画效果和布局灵活性，Checkbox组件改进了视觉反馈和交互体验。
+**重要更新** 筛选区域按钮布局已标准化，在所有包含筛选功能的页面中统一采用查询按钮在左、重置按钮在右的布局模式，确保一致的UX体验。
 
 章节来源
 - [button.tsx:7-114](file://src/app/components/ui/button.tsx#L7-L114)
@@ -143,7 +142,7 @@ CVA["CVA 变体系统<br/>尺寸、风格、状态"]
 SLOT["Slot 包装器<br/>asChild 支持"]
 RFORM["表单上下文<br/>react-hook-form + Label"]
 THEME["主题系统<br/>CSS 变量 + 暗色变体"]
-IMPROVED["增强组件<br/>Button/Dialog/Checkbox"]
+STANDARDIZED["标准化布局<br/>筛选按钮统一布局"]
 R --> SLOT
 SLOT --> CVA
 RFORM --> R
@@ -151,8 +150,8 @@ RFORM --> SLOT
 CVA --> THEME
 SLOT --> THEME
 R --> THEME
-IMPROVED --> CVA
-IMPROVED --> THEME
+STANDARDIZED --> CVA
+STANDARDIZED --> THEME
 ```
 
 图表来源
@@ -174,6 +173,7 @@ IMPROVED --> THEME
   - 通过 CVA 定义 variant 与 size 两类变体，覆盖默认、破坏性、描边、次级、幽灵、链接等风格与尺寸。
   - **新增** 增强的状态处理机制，包括加载态、禁用态、悬停态和点击态的精细控制。
   - **改进** 内置聚焦环、禁用态、错误态（aria-invalid）与 SVG 兼容处理，提供更流畅的用户体验。
+  - **标准化** 在筛选区域中统一采用查询按钮在左、重置按钮在右的布局模式。
 - 关键属性
   - className：追加自定义样式
   - variant：default/destructive/outline/secondary/ghost/link
@@ -382,7 +382,7 @@ CVA["class-variance-authority"]
 CLSX["clsx + tailwind-merge"]
 RHF["react-hook-form"]
 THEME["theme.css"]
-ENHANCED["增强组件依赖<br/>动画库 + 响应式工具"]
+STANDARDIZED["标准化布局系统<br/>筛选按钮统一布局"]
 P --> R
 P --> CVA
 P --> CLSX
@@ -391,8 +391,8 @@ CVA --> CLSX
 RHF --> THEME
 R --> THEME
 CLSX --> THEME
-ENHANCED --> CVA
-ENHANCED --> THEME
+STANDARDIZED --> CVA
+STANDARDIZED --> THEME
 ```
 
 图表来源
@@ -414,6 +414,7 @@ ENHANCED --> THEME
   - 错误态通过 aria-invalid 与聚焦环联动，提升屏幕阅读器体验。
   - 关闭按钮包含 sr-only 文本，确保可读性。
   - **增强** 改进了Button、Dialog和Checkbox组件的可访问性支持，提供更好的键盘导航和屏幕阅读器兼容性。
+  - **标准化** 筛选区域按钮布局的一致性提升了整体界面的可预测性和易用性。
 
 ## 故障排查指南
 - 组件未显示或样式异常
@@ -437,6 +438,9 @@ ENHANCED --> THEME
 - **新增** Checkbox状态不同步
   - 确认checked属性是否正确传递；检查onChange事件处理逻辑。
   - 参考：[Checkbox状态处理:32-62](file://src/app/components/ui/checkbox.tsx#L32-L62)
+- **新增** 筛选按钮布局不一致
+  - 确认查询按钮是否在左侧、重置按钮是否在右侧；检查按钮容器的flex布局配置。
+  - 参考：[标准化布局规范:7-114](file://src/app/components/ui/button.tsx#L7-114)
 
 **Section sources**
 - [utils.ts:4-6](file://src/app/components/ui/utils.ts#L4-L6)
@@ -450,7 +454,7 @@ ENHANCED --> THEME
 ## 结论
 该组件库以 Radix UI 为核心，结合 CVA 与 Tailwind CSS，实现了高可组合、强可访问性的前端组件体系。通过统一的主题系统与表单上下文，既满足业务快速迭代需求，又兼顾了长期维护与一致性。
 
-**最新进展** 本次更新对Button、Dialog和Checkbox组件进行了重大重构，显著提升了样式选项丰富度、状态处理能力和用户体验。建议在实际项目中遵循组件 API 规范与样式定制原则，确保跨页面风格统一与无障碍体验。
+**最新进展** 本次更新重点实现了筛选区域按钮布局的标准化，在9个页面中统一了查询按钮在左、重置按钮在右的布局模式，显著提升了用户界面的一致性和用户体验。建议在实际项目中遵循组件 API 规范与样式定制原则，确保跨页面风格统一与无障碍体验。
 
 ## 附录
 
@@ -467,6 +471,9 @@ ENHANCED --> THEME
 - **新增** 状态管理
   - 推荐使用受控组件模式，通过props控制组件状态
   - 利用事件回调处理用户交互
+- **新增** 布局规范
+  - 筛选区域按钮统一采用查询按钮在左、重置按钮在右的布局模式
+  - 按钮间距和对齐方式保持一致，提升用户体验
 
 ### 主题与暗色模式
 - 主题变量
@@ -481,6 +488,7 @@ ENHANCED --> THEME
   - 支持loading状态和禁用状态
   - 增强的键盘导航和焦点管理
   - 更多的样式变体和尺寸选项
+  - 标准化的筛选区域布局支持
 - **Dialog增强特性**
   - 灵活的动画系统和过渡效果
   - 响应式布局和尺寸控制

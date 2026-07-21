@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: warehouse_app/app_shell
-title: 应用外壳与业务路由布局
+title: 应用外壳与全局路由布局
 scope:
     - src/app/App.tsx
     - src/app/layout.tsx

@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-07-20T11:06:25Z"
+exported_at: "2026-07-21T06:35:34Z"
 modules:
     "":
-        dir_name: 国泰君安期货移仓业务管理系统（多应用聚合根）
-        title: 国泰君安期货移仓业务管理系统（多应用聚合根）
+        dir_name: 国泰君安期货交易所移仓与权限申请前端聚合工程
+        title: 国泰君安期货交易所移仓与权限申请前端聚合工程
         scope:
             - README.md
             - ATTRIBUTIONS.md
@@ -249,8 +249,8 @@ modules:
         depends_on: []
         related_to: []
     warehouse_app/app_shell:
-        dir_name: 应用外壳与业务路由布局
-        title: 应用外壳与业务路由布局
+        dir_name: 应用外壳与全局路由布局
+        title: 应用外壳与全局路由布局
         scope:
             - src/app/App.tsx
             - src/app/layout.tsx
@@ -266,8 +266,8 @@ modules:
         depends_on: []
         related_to: []
     warehouse_app/system_settings:
-        dir_name: 系统设置与资质确认面板
-        title: 系统设置与资质确认面板
+        dir_name: 系统设置与调试面板（失败原因配置、全局状态模拟、营业执照确认）
+        title: 系统设置与调试面板（失败原因配置、全局状态模拟、营业执照确认）
         scope:
             - src/app/pages/SystemSettings.tsx
             - src/app/components/ConfigPanel.tsx

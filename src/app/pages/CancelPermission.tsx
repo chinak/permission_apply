@@ -4,7 +4,7 @@ import { Button } from '../components/ui/Button';
 import { Checkbox } from '../components/ui/Checkbox';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogHeader, DialogFooter } from '../components/ui/Dialog';
 import { CancelProcessDialog } from '../components/CancelProcessDialog';
-import { CANCEL_PERMISSION_APPLICATIONS } from '../utils/mockData';
+import { CANCEL_PERMISSION_APPLICATIONS, getEnabledReasons } from '../utils/mockData';
 
 export function CancelPermission() {
   const [selectedRowIds, setSelectedRowIds] = useState<string[]>([]);
@@ -13,6 +13,14 @@ export function CancelPermission() {
   const [remarkText, setRemarkText] = useState('');
   const [isProcessOpen, setIsProcessOpen] = useState(false);
   const [processApp, setProcessApp] = useState<any>(null);
+
+  // 批量处理/复核弹框状态
+  const [isBatchOpen, setIsBatchOpen] = useState(false);
+  const [batchType, setBatchType] = useState<'process' | 'review'>('process');
+  const [batchAction, setBatchAction] = useState<'success' | 'fail' | ''>('');
+  const [batchReasonId, setBatchReasonId] = useState('');
+  const [batchReasonText, setBatchReasonText] = useState('');
+  const enabledReasons = getEnabledReasons('natural_person_cancel');
 
   const applications = CANCEL_PERMISSION_APPLICATIONS;
 
@@ -180,8 +188,8 @@ export function CancelPermission() {
       <div className="bg-white rounded-sm shadow-sm border border-slate-200">
         {/* Action Bar */}
         <div className="px-5 py-4 border-b border-slate-200 bg-white flex flex-wrap items-center gap-3">
-          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection}>批量处理</Button>
-          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection}>批量复核</Button>
+          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection} onClick={() => { setBatchType('process'); setBatchAction(''); setBatchReasonId(''); setBatchReasonText(''); setIsBatchOpen(true); }}>批量处理</Button>
+          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection} onClick={() => { setBatchType('review'); setBatchAction(''); setBatchReasonId(''); setBatchReasonText(''); setIsBatchOpen(true); }}>批量复核</Button>
           <div className="w-px h-4 bg-slate-300 mx-1"></div>
           <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection}>批量导出</Button>
           <Button variant="outline" className="text-sm rounded-sm text-slate-700">全部导出</Button>
@@ -326,6 +334,108 @@ export function CancelPermission() {
 
       {/* 处理模态框（共享组件） */}
       <CancelProcessDialog app={processApp} open={isProcessOpen} onOpenChange={setIsProcessOpen} />
+
+      {/* 批量处理/复核弹框 */}
+      <Dialog open={isBatchOpen} onOpenChange={setIsBatchOpen}>
+        <DialogContent className="max-w-md p-0 border-none rounded-sm overflow-hidden bg-white">
+          <DialogHeader className="px-6 py-4 border-b border-slate-100 bg-slate-50/50 m-0">
+            <DialogTitle className="text-base font-bold text-slate-800">
+              {batchType === 'process' ? '批量处理' : '批量复核'}
+            </DialogTitle>
+            <DialogDescription className="text-xs text-slate-500 mt-1">
+              已选中 {selectedRowIds.length} 条流水记录
+            </DialogDescription>
+          </DialogHeader>
+          <div className="p-6 space-y-5">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-medium text-slate-700">办理结果</label>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="batchCancelAction"
+                    value="success"
+                    checked={batchAction === 'success'}
+                    onChange={(e) => setBatchAction(e.target.value as any)}
+                    className="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500"
+                  />
+                  <span className="text-sm text-slate-700">{batchType === 'process' ? '审批通过' : '复核通过'}</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="batchCancelAction"
+                    value="fail"
+                    checked={batchAction === 'fail'}
+                    onChange={(e) => setBatchAction(e.target.value as any)}
+                    className="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500"
+                  />
+                  <span className="text-sm text-slate-700">办理失败</span>
+                </label>
+              </div>
+            </div>
+
+            {batchAction === 'fail' && (
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium text-slate-700">
+                    <span className="text-red-500 mr-1">*</span>失败原因
+                  </label>
+                  <div className="relative">
+                    <select
+                      className="w-full px-3 py-2 text-sm border border-slate-300 rounded-sm appearance-none bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                      value={batchReasonId}
+                      onChange={(e) => setBatchReasonId(e.target.value)}
+                    >
+                      <option value="" disabled>请选择失败原因...</option>
+                      {enabledReasons.map(reason => (
+                        <option key={reason.id} value={reason.id}>{reason.content}</option>
+                      ))}
+                      <option value="other">其他原因 (手动输入)</option>
+                    </select>
+                    <ChevronDown className="w-4 h-4 absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                  </div>
+                </div>
+
+                {batchReasonId === 'other' && (
+                  <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <textarea
+                      rows={3}
+                      value={batchReasonText}
+                      onChange={(e) => setBatchReasonText(e.target.value)}
+                      placeholder="请详细描述具体原因..."
+                      className="w-full px-3 py-2 text-sm border border-slate-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          <DialogFooter className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 m-0 flex justify-end gap-3 sm:space-x-0">
+            <Button variant="outline" onClick={() => setIsBatchOpen(false)} className="rounded-sm text-slate-600 h-8">
+              取消
+            </Button>
+            <Button
+              className="rounded-sm bg-blue-600 hover:bg-blue-700 text-white h-8"
+              disabled={
+                !batchAction ||
+                (batchAction === 'fail' && !batchReasonId) ||
+                (batchAction === 'fail' && batchReasonId === 'other' && !batchReasonText.trim())
+              }
+              onClick={() => {
+                const finalReason = batchReasonId === 'other'
+                  ? batchReasonText
+                  : enabledReasons.find(r => r.id === batchReasonId)?.content;
+                alert(`${batchType === 'process' ? '批量处理' : '批量复核'}：${batchAction === 'success' ? '通过' : '失败'}\n选中流水：${selectedRowIds.join(', ')}\n原因：${finalReason || '无'}`);
+                setIsBatchOpen(false);
+                setSelectedRowIds([]);
+              }}
+            >
+              确定办理
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
