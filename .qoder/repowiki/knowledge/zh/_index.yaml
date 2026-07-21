@@ -3,11 +3,11 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-06-30T05:12:48Z"
+exported_at: "2026-07-20T11:06:25Z"
 modules:
     "":
-        dir_name: 机构业务综合管理平台
-        title: 机构业务综合管理平台
+        dir_name: 国泰君安期货移仓业务管理系统（多应用聚合根）
+        title: 国泰君安期货移仓业务管理系统（多应用聚合根）
         scope:
             - README.md
             - ATTRIBUTIONS.md
@@ -218,80 +218,12 @@ modules:
             - warehouse_app
         depends_on: []
         related_to: []
-    build_system:
-        dir_name: Vite 构建与自动化部署体系
-        title: Vite 构建与自动化部署体系
-        scope: []
-        source_files:
-            - package.json
-            - vite.config.ts
-            - pnpm-workspace.yaml
-            - deploy.ps1
-            - deploy/deploy.sh
-            - deploy/nginx.conf
-        children: []
-        depends_on: []
-        related_to: []
-    configuration_system:
-        dir_name: 前端应用配置与状态管理
-        title: 前端应用配置与状态管理
-        scope: []
-        source_files:
-            - src/app/store/AppContext.tsx
-            - src/app/store/WarehouseContext.tsx
-            - src/app/components/ConfigPanel.tsx
-            - vite.config.ts
-            - deploy/nginx.conf
-            - deploy/deploy.sh
-            - pnpm-workspace.yaml
-        children: []
-        depends_on: []
-        related_to: []
-    dependency_management:
-        dir_name: pnpm Workspace 依赖管理与版本锁定
-        title: pnpm Workspace 依赖管理与版本锁定
-        scope: []
-        source_files:
-            - package.json
-            - pnpm-workspace.yaml
-            - package-lock.json
-            - permission_apply/package.json
-        children: []
-        depends_on: []
-        related_to: []
     deploy:
-        dir_name: 前端应用自动化部署与 Nginx 配置
-        title: 前端应用自动化部署与 Nginx 配置
+        dir_name: 前端静态站点自动化部署与 Nginx 配置
+        title: 前端静态站点自动化部署与 Nginx 配置
         scope:
             - deploy/
         source_files: []
-        children: []
-        depends_on: []
-        related_to: []
-    error_handling:
-        dir_name: 前端错误处理机制
-        title: 前端错误处理机制
-        scope: []
-        source_files:
-            - src/app/components/figma/ImageWithFallback.tsx
-            - src/app/components/ui/form.tsx
-            - src/app/store/AppContext.tsx
-            - src/app/components/ui/sidebar.tsx
-            - src/app/components/ui/carousel.tsx
-        children: []
-        depends_on: []
-        related_to: []
-    frontend_style:
-        dir_name: 前端样式系统与视觉规范
-        title: 前端样式系统与视觉规范
-        scope: []
-        source_files:
-            - src/styles/theme.css
-            - src/styles/tailwind.css
-            - src/styles/index.css
-            - src/lib/utils.ts
-            - src/app/components/ui/button.tsx
-            - package.json
         children: []
         depends_on: []
         related_to: []
@@ -305,8 +237,8 @@ modules:
         depends_on: []
         related_to: []
     warehouse_app:
-        dir_name: 机构业务综合管理平台
-        title: 机构业务综合管理平台
+        dir_name: 仓库与交易权限一体化前端应用
+        title: 仓库与交易权限一体化前端应用
         scope:
             - src/
         source_files: []
@@ -317,8 +249,8 @@ modules:
         depends_on: []
         related_to: []
     warehouse_app/app_shell:
-        dir_name: 机构业务平台应用壳层
-        title: 机构业务平台应用壳层
+        dir_name: 应用外壳与业务路由布局
+        title: 应用外壳与业务路由布局
         scope:
             - src/app/App.tsx
             - src/app/layout.tsx
@@ -332,12 +264,10 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: warehouse_app/system_settings
-            - path: warehouse_app/warehouse_operations
+        related_to: []
     warehouse_app/system_settings:
-        dir_name: 系统配置与状态模拟
-        title: 系统配置与状态模拟
+        dir_name: 系统设置与资质确认面板
+        title: 系统设置与资质确认面板
         scope:
             - src/app/pages/SystemSettings.tsx
             - src/app/components/ConfigPanel.tsx
@@ -345,12 +275,10 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: warehouse_app/app_shell
-            - path: warehouse_app/warehouse_operations
+        related_to: []
     warehouse_app/warehouse_operations:
-        dir_name: 期货交易所移仓业务管理
-        title: 期货交易所移仓业务管理
+        dir_name: 交易所移仓业务申请与审批
+        title: 交易所移仓业务申请与审批
         scope:
             - src/app/pages/WarehouseList.tsx
             - src/app/pages/WarehouseDetail.tsx
@@ -362,6 +290,4 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to:
-            - path: warehouse_app/app_shell
-            - path: warehouse_app/system_settings
+        related_to: []

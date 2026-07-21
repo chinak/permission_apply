@@ -521,11 +521,11 @@ export function WarehouseAuditList() {
           </div>
         </div>
         <div className="flex justify-end gap-3 mt-5 pt-5 border-t border-slate-100">
-          <Button variant="outline" className="px-6 rounded-sm text-slate-600 h-8 text-sm">重置</Button>
           <Button className="px-6 rounded-sm bg-blue-600 hover:bg-blue-700 text-white h-8 text-sm flex items-center gap-2">
             <Search className="w-3.5 h-3.5" />
             查询
           </Button>
+          <Button variant="outline" className="px-6 rounded-sm text-slate-600 h-8 text-sm">重置</Button>
         </div>
       </div>
 

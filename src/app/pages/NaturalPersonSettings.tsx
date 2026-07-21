@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Edit, Trash2, ChevronDown, Check, X } from 'lucide-react';
+import { Plus, Edit, Trash2, ChevronDown } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogFooter, DialogHeader } from '../components/ui/Dialog';
 import { MOCK_REASONS } from '../utils/mockData';
@@ -12,15 +12,23 @@ interface FailureReason {
   createTime: string;
 }
 
-export function SystemSettings() {
-  const [selectedBusiness, setSelectedBusiness] = useState('trade_permission');
-  
+// 自然人业务模块选项 —— 与机构侧保持一致的下拉配置模式
+const BUSINESS_OPTIONS: { value: string; label: string; disabled?: boolean }[] = [
+  { value: 'natural_person_cancel', label: '注销交易编码/权限' },
+  { value: 'natural_person_open', label: '普通开户 (待接入)', disabled: true },
+  { value: 'natural_person_info_change', label: '客户资料变更 (待接入)', disabled: true },
+];
+
+export function NaturalPersonSettings() {
+  const [selectedBusiness, setSelectedBusiness] = useState('natural_person_cancel');
+
   const [reasons, setReasons] = useState<FailureReason[]>(MOCK_REASONS);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingReason, setEditingReason] = useState<FailureReason | null>(null);
   const [newContent, setNewContent] = useState('');
 
   const filteredReasons = reasons.filter(r => r.businessType === selectedBusiness);
+  const currentBusinessLabel = BUSINESS_OPTIONS.find(o => o.value === selectedBusiness)?.label ?? '';
 
   const handleOpenModal = (reason?: FailureReason) => {
     if (reason) {
@@ -57,13 +65,9 @@ export function SystemSettings() {
     }
   };
 
-  const toggleStatus = (id: string) => {
-    setReasons(reasons.map(r => r.id === id ? { ...r, isEnabled: !r.isEnabled } : r));
-  };
-
   return (
     <div className="w-full mx-auto pb-24 px-4 pt-6">
-      <h1 className="text-xl font-bold text-slate-800 mb-4">失败原因配置</h1>
+      <h1 className="text-xl font-bold text-slate-800 mb-4">失败原因配置（自然人）</h1>
       <div className="flex gap-6 h-[calc(100vh-200px)] min-h-[600px]">
         {/* Main Content Area */}
         <div className="flex-1 bg-white border border-slate-200 rounded-sm shadow-sm flex flex-col overflow-hidden">
@@ -73,14 +77,16 @@ export function SystemSettings() {
                 <div className="flex items-center gap-3">
                   <label className="text-sm font-medium text-slate-700">业务模块</label>
                   <div className="relative w-64">
-                    <select 
+                    <select
                       className="w-full px-3 py-2 text-sm border border-slate-300 rounded-sm appearance-none bg-white focus:outline-none focus:border-blue-500"
                       value={selectedBusiness}
                       onChange={(e) => setSelectedBusiness(e.target.value)}
                     >
-                      <option value="trade_permission">交易权限申请</option>
-                      <option value="account_open" disabled>普通账户开户 (待接入)</option>
-                      <option value="info_change" disabled>客户资料变更 (待接入)</option>
+                      {BUSINESS_OPTIONS.map(opt => (
+                        <option key={opt.value} value={opt.value} disabled={opt.disabled}>
+                          {opt.label}
+                        </option>
+                      ))}
                     </select>
                     <ChevronDown className="w-4 h-4 absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                   </div>
@@ -110,16 +116,16 @@ export function SystemSettings() {
                             <td className="px-6 py-4 text-slate-500 font-mono text-xs">{reason.createTime}</td>
                             <td className="px-6 py-4">
                               <div className="flex items-center justify-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                                <Button 
-                                  variant="ghost" 
+                                <Button
+                                  variant="ghost"
                                   className="h-8 px-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-sm"
                                   onClick={() => handleOpenModal(reason)}
                                 >
                                   <Edit className="w-4 h-4 mr-1" /> 编辑
                                 </Button>
                                 <div className="w-px h-3 bg-slate-300"></div>
-                                <Button 
-                                  variant="ghost" 
+                                <Button
+                                  variant="ghost"
                                   className="h-8 px-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-sm"
                                   onClick={() => handleDelete(reason.id)}
                                 >
@@ -150,16 +156,16 @@ export function SystemSettings() {
             <DialogTitle className="text-base font-bold text-slate-800">
               {editingReason ? '编辑办理意见' : '新增办理意见'}
             </DialogTitle>
-            <DialogDescription className="sr-only">配置业务办理退回的快捷意见选项</DialogDescription>
+            <DialogDescription className="sr-only">配置自然人业务办理退回的快捷意见选项</DialogDescription>
           </DialogHeader>
           <div className="p-6">
             <div className="space-y-4">
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-slate-700">所属业务模块</label>
-                <input 
-                  type="text" 
-                  disabled 
-                  value="交易权限申请" 
+                <input
+                  type="text"
+                  disabled
+                  value={currentBusinessLabel}
                   className="w-full px-3 py-2 text-sm border border-slate-200 bg-slate-50 text-slate-500 rounded-sm cursor-not-allowed"
                 />
               </div>
@@ -167,7 +173,7 @@ export function SystemSettings() {
                 <label className="text-sm font-medium text-slate-700">
                   <span className="text-red-500 mr-1">*</span>办理意见内容
                 </label>
-                <textarea 
+                <textarea
                   rows={3}
                   value={newContent}
                   onChange={(e) => setNewContent(e.target.value)}

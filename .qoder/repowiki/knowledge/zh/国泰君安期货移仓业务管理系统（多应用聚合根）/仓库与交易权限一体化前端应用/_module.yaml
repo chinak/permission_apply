@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: warehouse_app
+title: 仓库与交易权限一体化前端应用
+scope:
+    - src/
+source_files: []
+depends_on: []
+related_to: []

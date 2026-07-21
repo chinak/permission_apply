@@ -1,0 +1,14 @@
+schema_version: 1
+module_path: warehouse_app/warehouse_operations
+title: 交易所移仓业务申请与审批
+scope:
+    - src/app/pages/WarehouseList.tsx
+    - src/app/pages/WarehouseDetail.tsx
+    - src/app/pages/WarehouseApply.tsx
+    - src/app/pages/WarehouseAudit.tsx
+    - src/app/pages/WarehouseAuditList.tsx
+    - src/app/store/WarehouseContext.tsx
+    - src/app/components/WarehouseConfigPanel.tsx
+source_files: []
+depends_on: []
+related_to: []

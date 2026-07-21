@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: warehouse_app/system_settings
+title: 系统设置与资质确认面板
+scope:
+    - src/app/pages/SystemSettings.tsx
+    - src/app/components/ConfigPanel.tsx
+    - src/app/components/LicenseConfirmDialog.tsx
+source_files: []
+depends_on: []
+related_to: []

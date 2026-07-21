@@ -104,11 +104,11 @@ export function VarietyPermissionTab() {
           />
         </div>
         <div className="flex gap-2 ml-auto">
-          <button onClick={() => setFilterLabel('')} className="px-4 py-2 bg-slate-100 text-slate-600 hover:bg-slate-200 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-colors">
-            <RefreshCw className="w-4 h-4" />重置
-          </button>
           <button className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-colors shadow-sm">
             <Search className="w-4 h-4" />查询
+          </button>
+          <button onClick={() => setFilterLabel('')} className="px-4 py-2 bg-slate-100 text-slate-600 hover:bg-slate-200 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-colors">
+            <RefreshCw className="w-4 h-4" />重置
           </button>
         </div>
       </div>

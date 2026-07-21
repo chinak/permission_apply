@@ -388,6 +388,10 @@ export function Protocols() {
         </div>
 
         <div className="flex justify-end gap-2 mt-5 pt-5 border-t border-slate-100">
+          <button className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-colors shadow-sm">
+            <Search className="w-4 h-4" />
+            查询
+          </button>
           <button 
             onClick={() => {
               setSearchTerm('');
@@ -398,10 +402,6 @@ export function Protocols() {
           >
             <RefreshCw className="w-4 h-4" />
             重置
-          </button>
-          <button className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg text-sm font-medium flex items-center gap-1.5 transition-colors shadow-sm">
-            <Search className="w-4 h-4" />
-            查询
           </button>
         </div>
       </div>
