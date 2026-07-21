@@ -71,6 +71,23 @@ export function CancelPermission() {
     setIsProcessOpen(true);
   };
 
+  // 批量操作环节校验：批量处理仅限「办理中-经办」，批量复核仅限「办理中-复核」
+  const openBatch = (type: 'process' | 'review') => {
+    const requiredStatus = type === 'process' ? '办理中-经办' : '办理中-复核';
+    const selectedApps = applications.filter(a => selectedRowIds.includes(a.id));
+    const invalid = selectedApps.filter(a => a.status !== requiredStatus);
+    if (invalid.length > 0) {
+      const stageName = type === 'process' ? '经办' : '复核';
+      alert(`仅「${requiredStatus}」状态的流水可批量${stageName === '经办' ? '处理' : '复核'}。\n\n以下 ${invalid.length} 条不符合：\n${invalid.map(a => `${a.id}（${a.status}）`).join('\n')}`);
+      return;
+    }
+    setBatchType(type);
+    setBatchAction('');
+    setBatchReasonId('');
+    setBatchReasonText('');
+    setIsBatchOpen(true);
+  };
+
   const hasSelection = selectedRowIds.length > 0;
 
   return (
@@ -127,6 +144,27 @@ export function CancelPermission() {
             </div>
           </div>
           <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-medium text-slate-600">申请内容</label>
+            <div className="relative">
+              <select className="w-full px-3 py-1.5 text-sm border border-slate-300 rounded-sm appearance-none bg-white focus:outline-none focus:border-blue-500">
+                <option value="">全部</option>
+                <option value="cffex">中国金融期货交易所编码及权限取消</option>
+                <option value="czce_code">郑州商品交易所编码取消</option>
+                <option value="czce_opt">郑州商品交易所商品期权限取消</option>
+                <option value="czce_spec">郑州商品交易所特定品种取消</option>
+                <option value="dce_code">大连商品交易所编码取消</option>
+                <option value="dce_opt">大连商品交易所商品期权限取消</option>
+                <option value="dce_spec">大连商品交易所特定品种取消</option>
+                <option value="shfe_code">上海期货交易所编码取消</option>
+                <option value="shfe_opt">上海期货交易所商品期权限取消</option>
+                <option value="shfe_spec">上海期货交易所特定品种取消</option>
+                <option value="ine_code">上海国际能源交易中心编码取消</option>
+                <option value="ine_opt">上海国际能源交易中心原油期权限取消</option>
+              </select>
+              <ChevronDown className="w-4 h-4 absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            </div>
+          </div>
+          <div className="flex flex-col gap-1.5">
             <label className="text-xs font-medium text-slate-600">申请日期</label>
             <input type="date" className="w-full px-3 py-1.5 text-sm border border-slate-300 rounded-sm focus:outline-none focus:border-blue-500 text-slate-600" />
           </div>
@@ -136,6 +174,10 @@ export function CancelPermission() {
           </div>
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-medium text-slate-600">最后提交CAP时间</label>
+            <input type="date" className="w-full px-3 py-1.5 text-sm border border-slate-300 rounded-sm focus:outline-none focus:border-blue-500 text-slate-600" />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-medium text-slate-600">最后提交CTP时间</label>
             <input type="date" className="w-full px-3 py-1.5 text-sm border border-slate-300 rounded-sm focus:outline-none focus:border-blue-500 text-slate-600" />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -188,8 +230,8 @@ export function CancelPermission() {
       <div className="bg-white rounded-sm shadow-sm border border-slate-200">
         {/* Action Bar */}
         <div className="px-5 py-4 border-b border-slate-200 bg-white flex flex-wrap items-center gap-3">
-          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection} onClick={() => { setBatchType('process'); setBatchAction(''); setBatchReasonId(''); setBatchReasonText(''); setIsBatchOpen(true); }}>批量处理</Button>
-          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection} onClick={() => { setBatchType('review'); setBatchAction(''); setBatchReasonId(''); setBatchReasonText(''); setIsBatchOpen(true); }}>批量复核</Button>
+          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection} onClick={() => openBatch('process')}>批量处理</Button>
+          <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection} onClick={() => openBatch('review')}>批量复核</Button>
           <div className="w-px h-4 bg-slate-300 mx-1"></div>
           <Button variant="outline" className="text-sm rounded-sm text-slate-700" disabled={!hasSelection}>批量导出</Button>
           <Button variant="outline" className="text-sm rounded-sm text-slate-700">全部导出</Button>
@@ -224,6 +266,7 @@ export function CancelPermission() {
                 <th className="font-medium px-4 py-3">申请日期</th>
                 <th className="font-medium px-4 py-3">处理日期</th>
                 <th className="font-medium px-4 py-3">最后提交CAP时间</th>
+                <th className="font-medium px-4 py-3">最后提交CTP时间</th>
                 <th className="font-medium px-4 py-3">办理状态</th>
                 <th className="font-medium px-4 py-3">经办人</th>
                 <th className="font-medium px-4 py-3">复核人</th>
@@ -252,6 +295,7 @@ export function CancelPermission() {
                   <td className="px-4 py-3 text-slate-500">{app.applyDate}</td>
                   <td className="px-4 py-3 text-slate-500">{app.processDate}</td>
                   <td className="px-4 py-3 text-slate-500">{app.lastCapTime}</td>
+                  <td className="px-4 py-3 text-slate-500">{app.lastCtpTime}</td>
                   <td className="px-4 py-3">
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-sm text-xs font-medium border ${getStatusColor(app.status)}`}>
                       {app.status}

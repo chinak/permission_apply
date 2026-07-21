@@ -34,6 +34,7 @@ export interface CancelPermissionApplication {
   applyDate: string;
   processDate: string;
   lastCapTime: string;
+  lastCtpTime: string;
   status: '办理中-经办' | '办理中-复核' | '办理失败-经办' | '办理失败-复核' | '办理成功';
   operator: string;
   reviewer: string;
@@ -52,6 +53,7 @@ export const CANCEL_PERMISSION_APPLICATIONS: CancelPermissionApplication[] = [
     applyDate: '2026-03-25 10:12',
     processDate: '-',
     lastCapTime: '-',
+    lastCtpTime: '-',
     status: '办理中-经办',
     operator: '-',
     reviewer: '-',
@@ -68,6 +70,7 @@ export const CANCEL_PERMISSION_APPLICATIONS: CancelPermissionApplication[] = [
     applyDate: '2026-03-24 14:30',
     processDate: '2026-03-24 16:05',
     lastCapTime: '2026-03-24 16:10',
+    lastCtpTime: '2026-03-24 16:12',
     status: '办理中-复核',
     operator: '李经办',
     reviewer: '-',
@@ -84,6 +87,7 @@ export const CANCEL_PERMISSION_APPLICATIONS: CancelPermissionApplication[] = [
     applyDate: '2026-03-22 09:45',
     processDate: '2026-03-22 11:20',
     lastCapTime: '2026-03-22 11:25',
+    lastCtpTime: '2026-03-22 11:28',
     status: '办理成功',
     operator: '王经办',
     reviewer: '赵复核',
@@ -100,6 +104,7 @@ export const CANCEL_PERMISSION_APPLICATIONS: CancelPermissionApplication[] = [
     applyDate: '2026-03-20 16:00',
     processDate: '2026-03-21 10:30',
     lastCapTime: '2026-03-21 10:35',
+    lastCtpTime: '-',
     status: '办理失败-复核',
     operator: '孙经办',
     reviewer: '钱复核',
